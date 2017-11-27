@@ -139,6 +139,33 @@ namespace DSR_Visualisation {
             timer.Start();
 
             dx = 0; dy = 0;
+            counter = 0;
+            int first2 = 0, sec2 = 0;
+            if (q.Count == 0) {
+                foreach(int i in g.path) {
+                    counter++;
+                    if (counter == 1)
+                        first2 = i;
+                    if (counter == 2) {
+                        int mult = 13;
+                        sec2 = i;
+                        int shift = 5;
+
+                        Line line = new Line();
+
+                        line.Stroke = new SolidColorBrush(Colors.Blue);
+                        line.StrokeThickness = 2;
+                        line.X1 = g.FindNode(first2).x * mult + shift;
+                        line.Y1 = g.FindNode(first2).y * mult + shift;
+                        line.X2 = g.FindNode(sec2).x * mult + shift;
+                        line.Y2 = g.FindNode(sec2).y * mult + shift;
+
+                        drawcanvas.Children.Add(line);
+                        counter = 0;
+                    }
+                }
+                
+            }
         }
 
 
