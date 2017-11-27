@@ -75,16 +75,16 @@ namespace DSR_Visualisation {
 
 
             if ((g.FindNode(sec).x - g.FindNode(first).x) > 0)
-                dx++;
+                dx=dx+2;
             else if ((g.FindNode(sec).x - g.FindNode(first).x) < 0)
-                dx--;
+                dx=dx - 2;
             else
                 dx = 0;
 
             if ((g.FindNode(sec).y - g.FindNode(first).y) > 0)
-                dy++;
+                dy = dy + 2;
             else if ((g.FindNode(sec).y - g.FindNode(first).y) < 0)
-                dy--;
+                dy = dy - 2;
             else
                 dy = 0;
 
@@ -93,8 +93,6 @@ namespace DSR_Visualisation {
 
             Console.WriteLine(dx + " " + dy);
         }
-
-        private Vector speed = new Vector(100, 100); // movement in pixels/second, initially zero
 
         public Ellipse CreateAnEllipse(int height, int width) {
             SolidColorBrush fillBrush = new SolidColorBrush() { Color = Colors.Red };
@@ -116,7 +114,6 @@ namespace DSR_Visualisation {
         int first, sec;
         List<int> q;
         private void Button_Click(object sender, RoutedEventArgs e) {
-            
             int counter = 0;
             foreach (var i in q) {
                 counter++;
@@ -124,15 +121,21 @@ namespace DSR_Visualisation {
                     first = i;
                 if (counter == 2) {
                     sec = i;
+                    
                     q.RemoveAt(0);
                     q.RemoveAt(0);
+
+                    if (i == g.tagetID) {
+                        q.Clear();
+                        q.AddRange(g.path);
+                    }
                     break;
                 }
             }
 
             Console.Write(first + " " + sec);
 
-            loopCounter = 10 * 13;
+            loopCounter = 5 * 13;
             timer.Start();
 
             dx = 0; dy = 0;
@@ -180,7 +183,7 @@ namespace DSR_Visualisation {
             List<Node> nodes = new List<Node>();
             List<Edge> edges = new List<Edge>();
 
-            int fromID, toID, tagetID;
+            public int fromID, toID, tagetID;
             public List<int> queue = new List<int>();
             public List<int> path = new List<int>();
             
