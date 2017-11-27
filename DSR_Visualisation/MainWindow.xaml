@@ -5,9 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DSR_Visualisation"
         mc:Ignorable="d"
-        Title="MainWindow" Height="428.602" Width="790.466">
+        Title="MainWindow" Height="708.157" Width="583.581">
     <Grid>
-        <Canvas x:Name="drawcanvas" HorizontalAlignment="Left" Height="381" VerticalAlignment="Top" Width="772"/>
+        <Canvas MouseLeftButtonDown="drawcanvas_MouseLeftButtonDown" x:Name="drawcanvas" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Canvas.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+            </Canvas.Background>
+        </Canvas>
+        <Button Click="Button_Click" Content="NEXT STEP" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
